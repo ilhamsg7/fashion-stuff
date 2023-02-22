@@ -12,18 +12,18 @@
 
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item {{ $title === 'Home' ? 'active' : '' }}">
+                        <li class="nav-item">
                             <a class="nav-link" href="/">Home
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
-                        <li class="nav-item {{ $title === 'Product' ? 'active' : '' }}">
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('all-product') }}">Product</a>
                         </li>
-                        <li class="nav-item {{ $title === 'About' ? 'active' : '' }}">
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('about') }}">About</a>
                         </li>
-                        <li class="nav-item {{ $title === 'Contact' ? 'active' : '' }}">
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('contact') }}">Contact</a>
                         </li>
 
@@ -39,10 +39,10 @@
 
                             </x-app-layout>
                         @else
-                            <li class="nav-item {{ $title === 'Login' ? 'active' : '' }}"><a class="nav-link" href="{{ route('login') }}">Log in</a></li>
+                            <li class="nav-item active"><a class="nav-link" href="{{ route('login') }}">Log in</a></li>
 
                             @if (Route::has('register'))
-                                <li class="nav-item {{ $title === 'Register' ? 'active' : '' }}"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
                             @endif
                         @endauth
                         @endif

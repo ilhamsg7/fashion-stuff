@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FundamentalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,8 @@ Route::post('/addcart/{id}',[HomeController::class, 'addcart']);
 Route::get('/showcart',[HomeController::class, 'showcart']);
 Route::get('/delete/{id}',[HomeController::class, 'deletecart']);
 Route::post('/order',[HomeController::class, 'confirmorder']);
+Route::get('/about', [FundamentalController::class, 'about'])->name('about');
+Route::get('/contact', [FundamentalController::class, 'contact'])->name('contact');
 
 Route::get('/product',[AdminController::class, 'product']);
 Route::post('/uploadproduct',[AdminController::class, 'uploadproduct']);
