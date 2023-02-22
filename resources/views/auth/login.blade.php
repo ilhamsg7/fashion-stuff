@@ -1,16 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-@include('layouts.auth.head-login')
-
-<body>
-    <!-- ***** Preloader Start ***** -->
-    @include('layouts.preloader')
-    <!-- ***** Preloader End ***** -->
-
-    <!-- Header -->
-    @include('layouts.auth.navbar-login')
-
     <x-guest-layout>
         <x-jet-authentication-card>
             <x-slot name="logo">
@@ -27,7 +14,6 @@
 
             <form method="POST" action="{{ route('login') }}">
                 @csrf
-
                 <div>
                     <x-jet-label for="email" value="{{ __('Email') }}" />
                     <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
@@ -47,23 +33,26 @@
                     </label>
                 </div>
 
-                <div class="flex items-center justify-end mt-4">
-                    @if (Route::has('password.request'))
+                <div class="flex items-center justify-between mt-8">
+                    <div>
+                        <a href="/" class="mr-4 btn btn-behance">
+                            <i class="fa-solid fa-arrow-left"></i> &nbsp;
+                            Back
+                        </a>
+                    </div>
+                    <div>
+                        @if (Route::has('password.request'))
                         <a class="underline text-sm text-gray-600 hover:text-gray-900"
                             href="{{ route('password.request') }}">
                             {{ __('Forgot your password?') }}
                         </a>
-                    @endif
+                        @endif
 
                     <x-jet-button class="ml-4">
                         {{ __('Log in') }}
                     </x-jet-button>
+                    </div>
                 </div>
             </form>
         </x-jet-authentication-card>
     </x-guest-layout>
-
-    @include('layouts.footer')
-     @include('layouts.script')
-</body>
-</html>

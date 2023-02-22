@@ -1,15 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-@include('layouts.auth.head-register')
-
-<body>
-    <!-- ***** Preloader Start ***** -->
-    @include('layouts.preloader')
-    <!-- ***** Preloader End ***** -->
-
-    <!-- Header -->
-    @include('layouts.auth.navbar-register')
     <x-guest-layout>
         <x-jet-authentication-card>
             <x-slot name="logo">
@@ -29,20 +17,20 @@
 
                 <div class="mt-4">
                     <x-jet-label for="email" value="{{ __('Email') }}" />
-                    <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
-                        required />
+                    <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email"
+                        :value="old('email')" required />
                 </div>
 
                 <div class="mt-4">
                     <x-jet-label for="phone" value="{{ __('Phone') }}" />
-                    <x-jet-input id="phone" class="block mt-1 w-full" type="number" name="phone" :value="old('phone')"
-                        required />
+                    <x-jet-input id="phone" class="block mt-1 w-full" type="number" name="phone"
+                        :value="old('phone')" required />
                 </div>
 
                 <div class="mt-4">
                     <x-jet-label for="address" value="{{ __('Address') }}" />
-                    <x-jet-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')"
-                        required />
+                    <x-jet-input id="address" class="block mt-1 w-full" type="text" name="address"
+                        :value="old('address')" required />
                 </div>
 
                 <div class="mt-4">
@@ -84,21 +72,23 @@
                     </div>
                 @endif
 
-                <div class="flex items-center justify-end mt-4">
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                        {{ __('Already registered?') }}
-                    </a>
+                <div class="flex items-center justify-between mt-8">
+                    <div>
+                        <a href="/" class="mr-4 btn btn-behance">
+                            <i class="fa-solid fa-arrow-left"></i> &nbsp;
+                            Back
+                        </a>
+                    </div>
+                    <div>
+                        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                            {{ __('Already registered?') }}
+                        </a>
 
-                    <x-jet-button class="ml-4">
-                        {{ __('Register') }}
-                    </x-jet-button>
+                        <x-jet-button class="ml-4">
+                            {{ __('Register') }}
+                        </x-jet-button>
+                    </div>
                 </div>
             </form>
         </x-jet-authentication-card>
     </x-guest-layout>
-
-    @include('layouts.footer')
-    @include('layouts.script')
-</body>
-</html>
-
