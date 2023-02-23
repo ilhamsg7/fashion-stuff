@@ -33,16 +33,18 @@
                 <div class="col-md-12">
                     <div class="filters">
                         <ul>
-                            <li class="active" data-filter="*">All Products</li>
+                            <li style="font-size: 24px;" class="active" data-filter="*">All Products</li>
                         </ul>
-                        <form action="{{ url('search') }}" method="get" class="form-inline"
-                            style="float: right; padding: 10px;">
-
+                        <form action="{{ url('search') }}" method="GET"
+                            class="float-right form-inline d-flex justify-content-between gap-3 my-4">
                             @csrf
-
-                            <input class="form-control" type="search" name="search" placeholder="search">
-
-                            <input type="submit" value="Search" class="btn btn-success">
+                            <div>
+                                <input class="form-control mx-2" type="search" name="search" placeholder="search">
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-success"><i
+                                        class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+                            </div>
                         </form>
                     </div>
                 </div>

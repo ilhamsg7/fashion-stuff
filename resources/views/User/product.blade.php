@@ -6,12 +6,14 @@
                     <h2>Latest Products</h2>
                     <a href="{{ route('all-product') }}">view all products <i class="fa fa-angle-right"></i></a>
 
-                    <form action="{{ url('search') }}" method="get" class="form-inline"
-                        style="float: right; padding: 10px;">
+                    <form action="{{ url('search') }}" method="GET" class="float-right form-inline d-flex justify-content-between gap-3 my-4">
                         @csrf
-                        <input class="form-control" type="search" name="search" placeholder="search">
-
-                        <input type="submit" value="Search" class="btn btn-success">
+                        <div>
+                            <input class="form-control mx-2" type="search" name="search" placeholder="search">
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-success"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+                        </div>
                     </form>
                 </div>
             </div>
