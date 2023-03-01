@@ -8,17 +8,16 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Http\Requests\CartRequest;
 
 class HomeController extends Controller {
 
     public function redirect() {
-        $usertype = Auth::user()->usertype;
-        if($usertype=='1') {
+        if(Auth::user()->usertype == '1') {
             return view('admin.home');
         } else {
             $data = Product::paginate(3);
-            $user = auth()->user();
-            $count = Cart::where('phone',$user->phone)->count();
+            $count = Cart::where('phone', auth()->user()->phone)->count();
             return view('user.home', compact('data', 'count'));
         }
     }
@@ -53,18 +52,13 @@ class HomeController extends Controller {
         ]);
     }
 
-    public function addcart(Request $request, $id) {
+    public function addcart(CartRequest $request, $id) {
         if(Auth::id()) {
+            $quantity = $request->validated();
             $user = auth()->user();
             $product = Product::find($id);
-            $cart = new Cart;
-            $cart->name=$user->name;
-            $cart->phone=$user->phone;
-            $cart->address=$user->address;
-            $cart->product_title=$product->title;
-            $cart->price=$product->price;
-            $cart->quantity=$request->quantity;
-            $cart->save();
+            $dataInput = [ $user, $product, $quantity ];
+            $cart = Cart::create($dataInput);
             return redirect()->back()->with('message', 'Product Added to Cart');
 
         } else {
@@ -80,8 +74,7 @@ class HomeController extends Controller {
     }
 
     public function deletecart($id) {
-        $data = Cart::find($id);
-        $data->delete();
+        $data = Cart::destroy($id);
         return redirect()->back()->with('message', 'Product Removed Successfully');
     }
 

@@ -10,7 +10,7 @@ class AdminController extends Controller {
 
     public function product() {
         if(Auth::id()) {
-            if(Auth::user()->usertype=='1') {
+            if(Auth::user()->usertype == '1') {
                 return view('admin.product');
             } else {
                 return redirect()->back();
@@ -22,7 +22,7 @@ class AdminController extends Controller {
     }
 
     public function uploadproduct(request $request) {
-        $data=new product;
+        $data = new Product;
         $image=$request->file;
         $imagename=time().'.'.$image->getClientOriginalExtension();
         $request->file->move('productimage', $imagename);
@@ -38,23 +38,22 @@ class AdminController extends Controller {
     }
 
     public function showproduct() {
-        $data=product::all();
+        $data = Product::all();
         return view('admin.showproduct', compact('data'));
     }
 
     public function deleteproduct($id) {
-        $data=product::find($id);
-        $data->delete();
+        $data = Product::destroy($id);
         return redirect()->back()->with('message', 'Product Deleted Successfully');
     }
 
     public function updateview($id) {
-        $data=product::find($id);
+        $data = Product::find($id);
         return view('admin.updateview', compact('data'));
     }
 
     public function updateproduct(Request $request, $id) {
-        $data=product::find($id);
+        $data = Product::find($id);
         $image=$request->file;
         if($image) {
             $imagename=time().'.'.$image->getClientOriginalExtension();
@@ -72,12 +71,12 @@ class AdminController extends Controller {
     }
 
     public function showorder() {
-        $order=order::all();
+        $order = Order::all();
         return view('admin.showorder', compact('order'));
     }
 
     public function updatestatus($id) {
-        $order=order::find($id);
+        $order = Order::find($id);
         $order->status='delivered';
         $order->save();
         return redirect()->back();
